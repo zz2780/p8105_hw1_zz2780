@@ -1,0 +1,16 @@
+---
+title: "p8105_hw1_zz2780"
+output: github_document
+date: "2022-09-15"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+data("penguins", package = "palmerpenguins")
+```
+
+This data includes the species, year, and sex of penguins and island they live in. It also includes each penguin's bill length (mm), bill depth (mm), flipper length (mm), and body mass (g).
+The data has `r nrow(penguins)`rows and `r ncol(penguins)`columns
