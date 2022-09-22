@@ -7,10 +7,28 @@ date: "2022-09-15"
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+```{r}
+library(ggplot2)
+```
 
+Problem 1
 ```{r}
 data("penguins", package = "palmerpenguins")
 ```
 
-This data includes the species, year, and sex of penguins and island they live in. It also includes each penguin's bill length (mm), bill depth (mm), flipper length (mm), and body mass (g).
-The data has `r nrow(penguins)` rows and `r ncol(penguins)` columns
+This data includes the species, year (2007-2009), and sex of penguins and island they live in. It also includes each penguin's bill length (mm), bill depth (mm), flipper length (mm), and body mass (g).
+
+The data has `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+The mean flipper length is `r mean(penguins$flipper_length_mm, na.rm=TRUE)` mm.
+
+Code for mean flipper length
+```{r}
+mean(penguins$flipper_length_mm, na.rm=TRUE)
+```
+Scatterplot of flipper length and bill length
+```{r}
+ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
+ggsave("scatter_plot.pdf", height=4, width=6)
+```
+
