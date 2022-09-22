@@ -8,6 +8,7 @@ date: "2022-09-15"
 knitr::opts_chunk$set(echo = TRUE)
 ```
 ```{r}
+library(tidyverse)
 library(ggplot2)
 ```
 
@@ -31,4 +32,46 @@ Scatterplot of flipper length and bill length
 ggplot(penguins, aes(x=bill_length_mm, y=flipper_length_mm, color=species))+geom_point()
 ggsave("scatter_plot.pdf", height=4, width=6)
 ```
+
+Problem 2
+```{r}
+df1 = tibble(
+  a=rnorm(10),
+  b=a>0,
+  c = c("AA","BB","CC","DD","EE","FF","GG","HH","II","JJ"),
+  d= factor(c("MID", "HIGH", "LOW", "LOW", "HIGH", "MID", "MID", "HIGH", "LOW", "MID"))
+)
+```
+
+Mean of each variable
+```{r}
+#Mean of numeric variable
+mean(df1$a)
+#Mean of logical variable
+mean(df1$b)
+#Mean of character variable
+mean(df1$c)
+#Mean of factor variable
+mean(df1$d)
+```
+It works when I tried to take the mean of a numeric variable and the mean of a logical variable. 
+
+It returns NA value when I tried to take the mean of a character variable and a factor variable.
+
+Mean of logical, character, and factor variables
+```{r}
+#Mean of logical variable
+as.numeric(df1$b)
+#Mean of character variable
+as.numeric(df1$c)
+#Mean of factor variable
+as.numeric(df1$d)
+```
+
+The logical variable changes to values of 1 and 0, with True being 1 and False being 0. This explains why the logical variable has a numeric mean whey I tried to take one.
+
+The character variable becomes a string of NA value, with the error "NA's introduced by coercion". This explains that why the character variable does not have a mean when I tried to take one.
+
+The factor variable changes to value of 1, 2, and 3.Before applying as.numeric function, I cannot take the mean of the factor variable. However, since it is a three-level factor variables, it can be interpreted as reasonable numeric value and thus can be calculated for mean.
+
 
